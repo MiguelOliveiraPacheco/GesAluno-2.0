@@ -12,9 +12,8 @@ inserirutilizadorRoute.post('/', (request,response) => {
         }
     }) */
 
-    console.log(request.body.texto)
-    console.log(request.body.data)
-    response.json({response:'ok'})
+    console.log(request.body)
+    response.json({response : 'Chegou tudo inteiro!'})
 
 }) 
 

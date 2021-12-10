@@ -1,3 +1,4 @@
+const { json } = require("express/lib/response")
 
 function init(){
    getNavbar()
@@ -23,9 +24,8 @@ function getTipos(){
     .then(data => {
         for(let i=0; i<data.length; i++){
             const op = 
-            `<option value"${data[i].idtipo}">${data[i].designacao}</option>`
+            `<option value="${data[i].idtipo}">${data[i].designacao}</option>`
             tipos.innerHTML += op
-
         }
     })
     .catch()
@@ -87,8 +87,25 @@ function getDados() {
         idtipo : tipo
     }
 
+    //criar um json do objeto
+    let jsonDados = JSON.stringify(dadosutilizador)
+
+    //preparar o pedido
+    const options = {
+        method: 'POST',
+        headers: {'Content-type' : 'application/json'},
+        body: jsonDados
+    }
+
+    fetch('https://localhost:3001/utilizador',options)
+    .then(res => res.json())
+    .then(res => alert(response.response))
+    .catch((err) => {
+        alert('ocorreu um erro com o pedido')
+    })
 
 }
+
 
 
 
